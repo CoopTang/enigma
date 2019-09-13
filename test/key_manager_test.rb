@@ -44,6 +44,11 @@ class KeyManagerTest < Minitest::Test
   end
 
   def test_can_generate_new_keys
+    original_key = @key_manager.key
+    original_keys = @key_manager.keys
+    @key_manager.generate_new_key
+    assert_equal true, original_key != @key_manager.key
+    assert_equal true,  original_keys != @key_manager.keys
   end
 
 end
