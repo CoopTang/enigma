@@ -1,15 +1,15 @@
 class KeyManager
   attr_reader :key,
-              :keys
+              :key_shifts
 
   def initialize(key = nil)
-    @key  = key ? key : generate_key_string
-    @keys = generate_key_shift
+    @key        = key ? key : generate_key_string
+    @key_shifts = generate_key_shifts
   end
 
   def generate_new_key
     @key  = generate_key_string
-    @keys = generate_key_shift
+    @key_shifts = generate_key_shifts
   end
 
   def generate_key_string
@@ -17,7 +17,7 @@ class KeyManager
     pad_with_zeroes(number_string)
   end
 
-  def generate_key_shift
+  def generate_key_shifts
     {
       A: @key[0..1].to_i,
       B: @key[1..2].to_i,
