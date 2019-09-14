@@ -38,7 +38,7 @@ class OffsetManagerTest < Minitest::Test
     assert_equal "4681", offset_manager.generate_offset_string
   end
 
-  def test_can_generate_offset_shift
+  def test_can_generate_shift
     offset_manager = OffsetManager.new("250291")
     expected_hash = {
       A: 4,
@@ -47,19 +47,19 @@ class OffsetManagerTest < Minitest::Test
       D: 1
     }
 
-    assert_equal expected_hash, offset_manager.generate_offset_shifts
+    assert_equal expected_hash, offset_manager.generate_shifts
   end
 
   def test_can_generate_new_offset
     date    = @offset_manager.date
     offset  = @offset_manager.offset
-    offsets = @offset_manager.offset_shifts
+    offsets = @offset_manager.shifts
 
     @offset_manager.generate_new_offset
 
     assert_equal true, date != @offset_manager.date
     assert_equal true, offset != @offset_manager.offset
-    assert_equal true, offsets != @offset_manager.offset_shifts
+    assert_equal true, offsets != @offset_manager.shifts
   end
     
 end

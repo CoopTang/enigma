@@ -3,7 +3,7 @@ require 'date'
 class OffsetManager
   attr_reader :date, 
               :offset, 
-              :offset_shifts
+              :shifts
 
   def initialize(date = nil)
     generate_new_offset(date)
@@ -12,14 +12,14 @@ class OffsetManager
   def generate_new_offset(date = nil)
     @date          = date ? date : generate_date_string
     @offset        = generate_offset_string
-    @offset_shifts = generate_offset_shifts
+    @shifts = generate_shifts
   end
 
   def generate_offset_string
     square_date_string(@date)[-4..-1]
   end
 
-  def generate_offset_shifts
+  def generate_shifts
     {
       A: @offset[0].to_i,
       B: @offset[1].to_i,
