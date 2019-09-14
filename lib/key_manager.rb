@@ -3,12 +3,12 @@ class KeyManager
               :keys
 
   def initialize(key = nil)
-    @key = key ? key : generate_key_string
+    @key  = key ? key : generate_key_string
     @keys = generate_key_shift
   end
 
   def generate_new_key
-    @key = generate_key_string
+    @key  = generate_key_string
     @keys = generate_key_shift
   end
 
