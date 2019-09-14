@@ -40,15 +40,15 @@ class KeyManagerTest < Minitest::Test
       C: 23,
       D: 34
     }
-    assert_equal expected_hash, @key_manager.generate_key_shift
+    assert_equal expected_hash, @key_manager.generate_key_shifts
   end
 
   def test_can_generate_new_keys
     original_key = @key_manager.key
-    original_keys = @key_manager.keys
+    original_keys = @key_manager.key_shifts
     @key_manager.generate_new_key
     assert_equal true, original_key != @key_manager.key
-    assert_equal true,  original_keys != @key_manager.keys
+    assert_equal true,  original_keys != @key_manager.key_shifts
   end
 
 end
