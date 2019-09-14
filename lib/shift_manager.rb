@@ -11,7 +11,15 @@ class ShiftManager
   end
 
   def generate_shifts
-    @key_manager.key_shifts.merge(@offset_manager.)
+    @key_manager.shifts.merge(@offset_manager.shifts) do |letter, key, offset|
+      key + offset
+    end
+  end
+
+  def generate_new_key
+  end
+
+  def generate_new_offset
   end
 
 end
