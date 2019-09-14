@@ -35,10 +35,10 @@ class KeyManagerTest < Minitest::Test
   def test_can_generate_key_shift
     @key_manager = KeyManager.new("01234")
     expected_hash = {
-      "A" => 01,
-      "B" => 12,
-      "C" => 23,
-      "D" => 34
+      A: 01,
+      B: 12,
+      C: 23,
+      D: 34
     }
     assert_equal expected_hash, @key_manager.generate_key_shift
   end

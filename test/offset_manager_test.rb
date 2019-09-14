@@ -41,10 +41,10 @@ class OffsetManagerTest < Minitest::Test
   def test_can_generate_offset_shift
     offset_manager = OffsetManager.new("250291")
     expected_hash = {
-      "A" => 4,
-      "B" => 6,
-      "C" => 8,
-      "D" => 1
+      A: 4,
+      B: 6,
+      C: 8,
+      D: 1
     }
 
     assert_equal expected_hash, offset_manager.generate_offset_shift
