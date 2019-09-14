@@ -25,4 +25,10 @@ class ShiftManagerTest < Minitest::Test
     assert_equal expected_hash, @shift_manager.generate_shifts
   end
 
+  def test_can_generate_new_shifts_after_new_key
+  end
+
+  def test_can_generate_new_shifts_after_new_offset
+  end
+
 end
