@@ -27,10 +27,9 @@ class KeyManagerTest < Minitest::Test
   end
 
   def test_can_generate_a_key_string
-    key = @key_manager.generate_key_string
-    assert_instance_of String, key
-    assert_equal 5, key.length
-    assert_equal true, key !~ /\D/
+    @key_manager.stubs(:generate_random_number).returns(23)
+    
+    assert_equal "00023", @key_manager.generate_key_string
   end
 
   def test_can_generate_key_shift
