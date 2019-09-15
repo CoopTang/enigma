@@ -30,7 +30,7 @@ class Decryptor
 
   def shift_character(character, number)
     num_char_set = CHAR_TO_NUM.keys.length
-    char_key     = CHAR_TO_NUM[character] - (number % num_char_set)
+    char_key     = CHAR_TO_NUM[character] - number
     is_divisible = char_key % num_char_set == 0 ? num_char_set : 0
     NUM_TO_CHAR[char_key % num_char_set + is_divisible]
   end
