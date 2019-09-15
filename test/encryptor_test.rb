@@ -27,6 +27,17 @@ class EncryptorTest < Minitest::Test
     assert_equal " ", @encryptor.shift_character("w", 31)
   end
 
+  def test_can_change_key_sets
+    new_shifts = {
+      A: 1,
+      B: 2,
+      C: 3,
+      D: 4
+    }
+    @encryptor.change_shifts(new_shifts)
+    assert_equal true, @shifts != @encryptor.shifts
+  end
+
   def test_can_encrypt_message
     assert_equal "mwptt", @encryptor.encrypt("hello")
     assert_equal "mwpttr wwch", @encryptor.encrypt("hello world")
