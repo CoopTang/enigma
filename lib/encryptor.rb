@@ -6,7 +6,7 @@ class Encryptor
   include CharacterSet
 
   def initialize(shifts)
-    @shifts   = shifts
+    @shifts = shifts
   end
 
   def shift_character(character, number)
