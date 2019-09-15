@@ -1,6 +1,6 @@
 require './lib/modules/character_set'
 
-class Encryptor
+class Decryptor
   attr_reader :shifts
 
   include CharacterSet
@@ -10,17 +10,17 @@ class Encryptor
     @num_shift_keys = @shifts.keys.length
   end
 
-  def encrypt(message)
+  def decrypt(message)
     shift_keys = @shifts.keys
-    encrypted  = ""
+    decrypted  = ""
     message.chars.each_index do |index|
       if CHAR_TO_NUM.has_key?(message[index])
-        encrypted << shift_character(message[index], @shifts[shift_keys[index % @num_shift_keys]])
+        decrypted << shift_character(message[index], @shifts[shift_keys[index % @num_shift_keys]])
       else
-        encrypted << message[index]
+        decrypted << message[index]
       end
     end
-    encrypted
+    decrypted
   end
 
   def change_shifts(shifts)
@@ -30,7 +30,7 @@ class Encryptor
 
   def shift_character(character, number)
     num_char_set = CHAR_TO_NUM.keys.length
-    char_key     = CHAR_TO_NUM[character] + number
+    char_key     = CHAR_TO_NUM[character] - number
     is_divisible = char_key % num_char_set == 0 ? num_char_set : 0
     NUM_TO_CHAR[char_key % num_char_set + is_divisible]
   end
