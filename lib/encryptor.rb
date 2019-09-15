@@ -6,26 +6,33 @@ class Encryptor
   include CharacterSet
 
   def initialize(shifts)
-    @shifts = shifts
-  end
-
-  def shift_character(character, number)
-    char_key     = CHAR_TO_NUM[character] + number
-    is_divisible = char_key % 27 == 0 ? 27 : 0
-    NUM_TO_CHAR[char_key % 27 + is_divisible]
+    @shifts         = shifts
+    @num_shift_keys = @shifts.keys.length
   end
 
   def encrypt(message)
     shift_keys = @shifts.keys
-    encrypted = ""
+    encrypted  = ""
     message.chars.each_index do |index|
       if CHAR_TO_NUM.has_key?(message[index])
-        encrypted << shift_character(message[index], @shifts[shift_keys[index % 4]])
+        encrypted << shift_character(message[index], @shifts[shift_keys[index % @num_shift_keys]])
       else
         encrypted << message[index]
       end
     end
     encrypted
+  end
+
+  def change_shifts(shifts)
+    @shifts         = shifts
+    @num_shift_keys = @shifts.keys.length
+  end
+
+  def shift_character(character, number)
+    num_char_set = CHAR_TO_NUM.keys.length
+    char_key     = CHAR_TO_NUM[character] + number
+    is_divisible = char_key % num_char_set == 0 ? num_char_set : 0
+    NUM_TO_CHAR[char_key % num_char_set + is_divisible]
   end
 
 end
