@@ -1,7 +1,7 @@
 require './lib/modules/character_set'
 
 class Encryptor
-  attr_reader 
+  attr_reader :shifts
 
   include CharacterSet
 
