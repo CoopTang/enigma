@@ -5,10 +5,13 @@ require './lib/encryptor'
 class EncryptorTest < Minitest::Test
   
   def setup
-    @key  = "01234"
-    @date = "250291"
-    @shift_manager = ShiftManager.new(@key, @date)
-    @encryptor     = Encryptor.new("Hello world", @shift_manager.shifts)
+    @shifts = {
+      A: 5,
+      B: 18,
+      C: 31,
+      D: 35
+    }
+    @encryptor = Encryptor.new(@shifts)
   end
 
   def test_it_exists
@@ -21,6 +24,13 @@ class EncryptorTest < Minitest::Test
     assert_equal "a", @encryptor.shift_character("z", 2)
     assert_equal "a", @encryptor.shift_character(" ", 1)
     assert_equal "a", @encryptor.shift_character("a", 27)
+    assert_equal " ", @encryptor.shift_character("w", 31)
+  end
+
+  def test_can_encrypt_message
+    assert_equal "mwptt", @encryptor.encrypt("hello")
+    assert_equal "mwpttr wwch", @encryptor.encrypt("hello world")
+    assert_equal "mwptt,dbxwv", @encryptor.encrypt("hello, user")
   end
 
 end
