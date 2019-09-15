@@ -2,7 +2,7 @@ require './test/test_helper'
 require './lib/shift_manager'
 require './lib/decryptor'
 
-class EncryptorTest < Minitest::Test
+class DecryptorTest < Minitest::Test
   
   def setup
     @shifts = {
@@ -11,7 +11,7 @@ class EncryptorTest < Minitest::Test
       C: 31,
       D: 35
     }
-    @decryptor = Encryptor.new(@shifts)
+    @decryptor = Decryptor.new(@shifts)
   end
 
   def test_it_exists
@@ -38,10 +38,10 @@ class EncryptorTest < Minitest::Test
     assert_equal true, @shifts != @decryptor.shifts
   end
 
-  def test_can_encrypt_message
-    assert_equal "hello", @decryptor.encrypt("mwptt")
-    assert_equal "hello world", @decryptor.encrypt("mwpttr wwch")
-    assert_equal "hello, user", @decryptor.encrypt("mwptt,dbxwv")
+  def test_can_decrypt_message
+    assert_equal "hello", @decryptor.decrypt("mwptt")
+    assert_equal "hello world", @decryptor.decrypt("mwpttr wwch")
+    assert_equal "hello, user", @decryptor.decrypt("mwptt,dbxwv")
   end
 
 end
