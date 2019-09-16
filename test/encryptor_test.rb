@@ -38,6 +38,12 @@ class EncryptorTest < Minitest::Test
     assert_equal true, @shifts != @encryptor.shifts
   end
 
+  def test_only_shifts_needed_characters
+    message = "hello, user"
+    assert_equal "m", @encryptor.shift_char_at_index(message, 0)
+    assert_equal ",", @encryptor.shift_char_at_index(message, 5)
+  end
+
   def test_can_encrypt_message
     assert_equal "mwptt", @encryptor.encrypt("hello")
     assert_equal "mwpttr wwch", @encryptor.encrypt("hello world")

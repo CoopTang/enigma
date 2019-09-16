@@ -7,24 +7,21 @@ class Decryptor
 
   def initialize(shifts)
     @shifts         = shifts
+    @shift_keys     = @shifts.keys
     @num_shift_keys = @shifts.keys.length
   end
 
   def decrypt(message)
-    shift_keys = @shifts.keys
     decrypted  = ""
     message.chars.each_index do |index|
-      if CHAR_TO_NUM.has_key?(message[index])
-        decrypted << shift_character(message[index], @shifts[shift_keys[index % @num_shift_keys]])
-      else
-        decrypted << message[index]
-      end
+      decrypted << shift_char_at_index(message, index)
     end
     decrypted
   end
 
   def change_shifts(shifts)
     @shifts         = shifts
+    @shift_keys     = @shifts.keys
     @num_shift_keys = @shifts.keys.length
   end
 
@@ -37,6 +34,14 @@ class Decryptor
 
   def same_shifts?(shifts)
     @shifts == shifts
+  end
+
+  def shift_char_at_index(message, index)
+    if CHAR_TO_NUM.has_key?(message[index])
+      shift_character(message[index], @shifts[@shift_keys[index % @num_shift_keys]])
+    else
+      message[index]
+    end
   end
 
 end
