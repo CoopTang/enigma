@@ -2,9 +2,16 @@ require './lib/enigma'
 
 message_file = ARGV[0]
 encrypt_file = ARGV[1]
-key          = ARGV[2]
+key          = nil
 date         = ARGV[3]
-enigma       = Enigma.new
+
+# Optional arguments
+if ARGV[2] != nil
+   key = ARGV[2] if ARGV[2].length == 5
+   date = ARGV[2] if ARGV[2].length == 6
+end
+
+enigma = Enigma.new
 
 encryption_data = enigma.encrypt(File.read(message_file), key, date)
 
