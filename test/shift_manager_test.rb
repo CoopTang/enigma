@@ -8,6 +8,12 @@ class ShiftManagerTest < Minitest::Test
   def setup
     @key  = "01234"
     @date = "250291"
+    @initial_shifts = {
+      A: 5,
+      B: 18,
+      C: 31,
+      D: 35
+    }
     @shift_manager = ShiftManager.new(@key, @date)
   end
 
@@ -16,19 +22,32 @@ class ShiftManagerTest < Minitest::Test
   end
 
   def test_can_generate_shifts
-    expected_hash = {
-      A: 5,
-      B: 18,
-      C: 31,
-      D: 35
-    }
-    assert_equal expected_hash, @shift_manager.generate_shifts
+    @shift_manager.generate_shifts
+    assert_equal @initial_shifts, @shift_manager.shifts
   end
 
   def test_can_generate_new_shifts_after_new_key
+    new_shifts = {
+      A: 5,
+      B: 18,
+      C: 31,
+      D: 36
+    }
+    @shift_manager.generate_key("01235")
+
+    assert_equal new_shifts, @shift_manager.shifts
   end
 
   def test_can_generate_new_shifts_after_new_offset
+    new_shifts = {
+      A: 5,
+      B: 16,
+      C: 23,
+      D: 34
+    }
+    @shift_manager.generate_offset("010120")
+    
+    assert_equal new_shifts, @shift_manager.shifts
   end
 
 end
