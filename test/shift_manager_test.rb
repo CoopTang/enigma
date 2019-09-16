@@ -50,12 +50,12 @@ class ShiftManagerTest < Minitest::Test
     assert_equal new_shifts, @shift_manager.shifts
   end
 
-  def test_can_get_the_key_used
+  def test_can_check_if_the_same_key
     assert_equal true, @shift_manager.same_key?("01234")
     assert_equal false, @shift_manager.same_key?("01235")
   end
 
-  def test_can_get_the_date_used
+  def test_can_check_if_the_same_date
     assert_equal true, @shift_manager.same_date?("250291")
     assert_equal false, @shift_manager.same_date?("010120")
   end
