@@ -38,7 +38,8 @@ class Encryptor
 
   def shift_char_at_index(message, index)
     if CHAR_TO_NUM.has_key?(message[index])
-      shift_character(message[index], @shifts[@shift_keys[index % @num_shift_keys]])
+      shift_key = @shift_keys[index % @num_shift_keys]
+      shift_character(message[index], @shifts[shift_key])
     else
       message[index]
     end
