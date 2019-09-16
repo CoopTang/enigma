@@ -33,4 +33,12 @@ class ShiftManager
   def same_date?(date)
     @offset_manager.date == date
   end
+
+  def key
+    @key_manager.key
+  end
+
+  def date
+    @offset_manager.date
+  end
 end
