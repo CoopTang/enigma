@@ -15,7 +15,7 @@ class Enigma
     update_shift_manager(key, date)
     update_encryptor_shifts(@shift_manager.shifts)
     {
-      encryption: @encryptor.encrypt(message),
+      encryption: @encryptor.encrypt(message.downcase),
       key: @shift_manager.key,
       date: @shift_manager.date
     }
@@ -25,7 +25,7 @@ class Enigma
     update_shift_manager(key, date)
     update_decryptor_shifts(@shift_manager.shifts)
     {
-      decryption: @decryptor.decrypt(message),
+      decryption: @decryptor.decrypt(message.downcase),
       key: @shift_manager.key,
       date: @shift_manager.date
     }
