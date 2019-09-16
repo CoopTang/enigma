@@ -26,7 +26,7 @@ class KeyManager
   end
 
   def generate_random_number
-    rand(99999)
+    rand(100000)
   end
 
   def pad_with_zeroes(number_string)
