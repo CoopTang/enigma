@@ -35,4 +35,8 @@ class Decryptor
     NUM_TO_CHAR[char_key % num_char_set + is_divisible]
   end
 
+  def same_shifts?(shifts)
+    @shifts == shifts
+  end
+
 end
