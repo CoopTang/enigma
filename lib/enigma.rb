@@ -11,4 +11,14 @@ class Enigma
     @decryptor     = Decryptor.new(@shift_manager.shifts)
   end
 
+  def encrypt(message, key = nil, date = nil)
+    @shift_manager.change_shifts(@)
+    @encryptor.encrypt(message)
+  end
+
+  def decrypt(message, key, date = nil)
+  end
+
+
+
 end
