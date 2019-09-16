@@ -44,4 +44,15 @@ class EncryptorTest < Minitest::Test
     assert_equal "mwptt,dbxwv", @encryptor.encrypt("hello, user")
   end
 
+  def test_can_check_if_shifts_are_the_same
+    new_shifts = {
+      A: 1,
+      B: 2,
+      C: 3,
+      D: 4
+    }
+    assert_equal true, @encryptor.same_shifts?(@shifts)
+    assert_equal false, @encryptor.same_shifts?(new_shifts)
+  end
+
 end

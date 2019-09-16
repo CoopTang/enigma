@@ -16,10 +16,29 @@ class ShiftManager
     end
   end
 
-  def generate_new_key
+  def generate_key(key = nil)
+    @key_manager.generate_key(key)
+    @shifts = generate_shifts
   end
 
-  def generate_new_offset
+  def generate_offset(date = nil)
+    @offset_manager.generate_offset(date)
+    @shifts = generate_shifts
   end
 
+  def same_key?(key)
+    @key_manager.key == key
+  end
+
+  def same_date?(date)
+    @offset_manager.date == date
+  end
+
+  def key
+    @key_manager.key
+  end
+
+  def date
+    @offset_manager.date
+  end
 end

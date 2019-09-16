@@ -3,12 +3,11 @@ class KeyManager
               :shifts
 
   def initialize(key = nil)
-    @key    = key ? key : generate_key_string
-    @shifts = generate_shifts
+    generate_key(key)
   end
 
-  def generate_new_key
-    @key    = generate_key_string
+  def generate_key(key = nil)
+    @key    = key ? key : generate_key_string
     @shifts = generate_shifts
   end
 
@@ -27,7 +26,7 @@ class KeyManager
   end
 
   def generate_random_number
-    rand(99999)
+    rand(100000)
   end
 
   def pad_with_zeroes(number_string)

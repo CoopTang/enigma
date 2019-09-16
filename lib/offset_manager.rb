@@ -6,10 +6,10 @@ class OffsetManager
               :shifts
 
   def initialize(date = nil)
-    generate_new_offset(date)
+    generate_offset(date)
   end
 
-  def generate_new_offset(date = nil)
+  def generate_offset(date = nil)
     @date   = date ? date : generate_date_string
     @offset = generate_offset_string
     @shifts = generate_shifts

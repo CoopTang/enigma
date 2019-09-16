@@ -44,4 +44,15 @@ class DecryptorTest < Minitest::Test
     assert_equal "hello, user", @decryptor.decrypt("mwptt,dbxwv")
   end
 
+  def test_can_check_if_shifts_are_the_same
+    new_shifts = {
+      A: 1,
+      B: 2,
+      C: 3,
+      D: 4
+    }
+    assert_equal true, @decryptor.same_shifts?(@shifts)
+    assert_equal false, @decryptor.same_shifts?(new_shifts)
+  end
+
 end

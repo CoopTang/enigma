@@ -4,6 +4,12 @@ require './lib/offset_manager'
 class OffsetManagerTest < Minitest::Test
 
   def setup
+    @initial_shift = {
+      A: 8,
+      B: 9,
+      C: 7,
+      D: 6
+    }
     @offset_manager = OffsetManager.new("010120")
   end
 
@@ -54,12 +60,19 @@ class OffsetManagerTest < Minitest::Test
     date    = @offset_manager.date
     offset  = @offset_manager.offset
     offsets = @offset_manager.shifts
+    expected_hash = {
+      A: 4,
+      B: 6,
+      C: 8,
+      D: 1
+    }
 
-    @offset_manager.generate_new_offset
+    @offset_manager.generate_offset("250291")
 
     assert_equal true, date != @offset_manager.date
     assert_equal true, offset != @offset_manager.offset
     assert_equal true, offsets != @offset_manager.shifts
+    assert_equal expected_hash, @offset_manager.shifts
   end
     
 end
