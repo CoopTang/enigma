@@ -55,7 +55,7 @@ class OffsetManagerTest < Minitest::Test
     offset  = @offset_manager.offset
     offsets = @offset_manager.shifts
 
-    @offset_manager.generate_new_offset
+    @offset_manager.generate_offset
 
     assert_equal true, date != @offset_manager.date
     assert_equal true, offset != @offset_manager.offset
