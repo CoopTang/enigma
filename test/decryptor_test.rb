@@ -27,6 +27,12 @@ class DecryptorTest < Minitest::Test
     assert_equal "w", @decryptor.shift_character(" ", 31)
   end
 
+  def test_only_shifts_needed_characters
+    message = "mwptt,dbxwv"
+    assert_equal "h", @decryptor.shift_char_at_index(message, 0)
+    assert_equal ",", @decryptor.shift_char_at_index(message, 5)
+  end
+
   def test_can_change_key_sets
     new_shifts = {
       A: 1,

@@ -7,24 +7,21 @@ class Encryptor
 
   def initialize(shifts)
     @shifts         = shifts
+    @shift_keys     = @shifts.keys
     @num_shift_keys = @shifts.keys.length
   end
 
   def encrypt(message)
-    shift_keys = @shifts.keys
     encrypted  = ""
     message.chars.each_index do |index|
-      if CHAR_TO_NUM.has_key?(message[index])
-        encrypted << shift_character(message[index], @shifts[shift_keys[index % @num_shift_keys]])
-      else
-        encrypted << message[index]
-      end
+      encrypted << shift_char_at_index(message, index)
     end
     encrypted
   end
 
   def change_shifts(shifts)
     @shifts         = shifts
+    @shift_keys     = @shifts.keys
     @num_shift_keys = @shifts.keys.length
   end
 
@@ -37,6 +34,14 @@ class Encryptor
 
   def same_shifts?(shifts)
     @shifts == shifts
+  end
+
+  def shift_char_at_index(message, index)
+    if CHAR_TO_NUM.has_key?(message[index])
+      shift_character(message[index], @shifts[@shift_keys[index % @num_shift_keys]])
+    else
+      message[index]
+    end
   end
 
 end
