@@ -46,9 +46,17 @@ class KeyManagerTest < Minitest::Test
   def test_can_generate_new_keys
     original_key = @key_manager.key
     original_keys = @key_manager.shifts
-    @key_manager.generate_key
+    expected_hash = {
+      A: 01,
+      B: 12,
+      C: 23,
+      D: 35
+    }
+    @key_manager.generate_key("01235")
+
     assert_equal true, original_key != @key_manager.key
     assert_equal true,  original_keys != @key_manager.shifts
+    assert_equal expected_hash, @key_manager.shifts
   end
 
 end
