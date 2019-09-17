@@ -1,9 +1,9 @@
 require './test/test_helper'
 require './lib/shift_manager'
 require './lib/decryptor'
+require './lib/modules/shiftable'
 
 class DecryptorTest < Minitest::Test
-  
   def setup
     @shifts = {
       A: 5,
@@ -19,18 +19,18 @@ class DecryptorTest < Minitest::Test
   end
 
   def test_can_shift_a_letter
-    assert_equal "a", @decryptor.shift_character("b", 1)
-    assert_equal "z", @decryptor.shift_character(" ", 1)
-    assert_equal "z", @decryptor.shift_character("a", 2)
-    assert_equal " ", @decryptor.shift_character("a", 1)
-    assert_equal "a", @decryptor.shift_character("a", 27)
-    assert_equal "w", @decryptor.shift_character(" ", 31)
+    assert_equal "a", @decryptor.shift_character("b", -1)
+    assert_equal "z", @decryptor.shift_character(" ", -1)
+    assert_equal "z", @decryptor.shift_character("a", -2)
+    assert_equal " ", @decryptor.shift_character("a", -1)
+    assert_equal "a", @decryptor.shift_character("a", -27)
+    assert_equal "w", @decryptor.shift_character(" ", -31)
   end
 
   def test_only_shifts_needed_characters
     message = "mwptt,dbxwv"
-    assert_equal "h", @decryptor.shift_char_at_index(message, 0)
-    assert_equal ",", @decryptor.shift_char_at_index(message, 5)
+    assert_equal "h", @decryptor.shift_char_at_index(message, 0, -1)
+    assert_equal ",", @decryptor.shift_char_at_index(message, 5, -1)
   end
 
   def test_can_change_key_sets

@@ -1,6 +1,7 @@
 require './test/test_helper'
 require './lib/shift_manager'
 require './lib/encryptor'
+require './lib/modules/shiftable'
 
 class EncryptorTest < Minitest::Test
   
@@ -40,8 +41,8 @@ class EncryptorTest < Minitest::Test
 
   def test_only_shifts_needed_characters
     message = "hello, user"
-    assert_equal "m", @encryptor.shift_char_at_index(message, 0)
-    assert_equal ",", @encryptor.shift_char_at_index(message, 5)
+    assert_equal "m", @encryptor.shift_char_at_index(message, 0, 1)
+    assert_equal ",", @encryptor.shift_char_at_index(message, 5, 1)
   end
 
   def test_can_encrypt_message
